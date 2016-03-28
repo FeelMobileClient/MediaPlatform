@@ -55,8 +55,70 @@ class WechatCallbackApi {
 		$urlGetToken = WECHAT_CGI_BIN.'token?grant_type=client_credential&appid='.APPID.'&secret='.APPSECRET;
 		$resultStr = file_get_contents($urlGetToken);
 		$resultObj = json_decode($resultStr);
-		echo $resultObj->access_token;
-		exit;
+		return $resultObj->access_token;
 	}
+
+	public function responseMsg() {
+		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
+
+		if(empty($postStr)) {
+			
+			echo "POST entity is empty!";
+			exit;
+		} else {
+			/** libxml_disable_entity_loader
+			 * is to prevent XML external Entity Injection,
+			 * the best way is
+			 * to check the validity of xml by yourself
+			 */
+			libxml_disable_entity_loader(true);
+
+			$postObj = simplexml_load_string($postStr, 'SimpleXMLElement', LIBXML_NOCDATA);
+			$fromUserName = $postObj->FromUserName;
+			$toUserName = $postObj->ToUserName;
+			$msgType = $postObj->MsgType;
+
+			switch($msgType) {
+				case 'text':
+					$content = trim($postObj->Content);
+					echo $this->makeMsg($toUserName, $fromUserName, 'text', $fromUserName.'对'.$toUserName.'说'.$content);
+					break;
+				case 'image':
+					break;
+				case 'voice':
+					break;
+				case 'video':
+					break;
+				case 'shortvideo':
+					break;
+				case 'location':
+					break;
+				case 'link':
+					break;
+				case 'event':
+					break;
+				default:
+					echo "Input something...";
+			}
+		}
+	}
+
+	public function makeMsg($fromUserName, $toUserName, $msgType, $contentStr) {
+
+		$time = time();
+
+		$textTemplate = "<xml>
+				<ToUserName>%s</ToUserName>
+				<FromUserName>%s</FromUserName>
+				<CreateTime>%s</CreateTime>
+				<MsgType>%s</MsgType>
+				<Content>%s</Content>
+				<FuncFlag>0</FuncFlag>
+				</xml>
+				";
+		$resultStr = sprintf($textTemplate, $toUserName, $fromUserName, $time, $msgType, $contentStr);
+		return $resultStr;
+	}
+	
 }
 ?>
