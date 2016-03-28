@@ -6,6 +6,9 @@
  ************************************************/
 
 define('TOKEN', 'test');
+define('WECHAT_CGI_BIN', 'https://api.weixin.qq.com/cgi-bin/');
+define('APPID', 'wxc5a8924b13639848');
+define('APPSECRET', 'b8f5468fa01c680feb030a13bc46efa1');
 
 class WechatCallbackApi {
 
@@ -46,6 +49,14 @@ class WechatCallbackApi {
 		} else {
 			return false;
 		}
+	}
+
+	public function getToken() {
+		$urlGetToken = WECHAT_CGI_BIN.'token?grant_type=client_credential&appid='.APPID.'&secret='.APPSECRET;
+		$resultStr = file_get_contents($urlGetToken);
+		$resultObj = json_decode($resultStr);
+		echo $resultObj->access_token;
+		exit;
 	}
 }
 ?>
