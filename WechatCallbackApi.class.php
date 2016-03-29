@@ -5,6 +5,8 @@
  * Copyright © 2016年 Liyang. All rights reserved
  ************************************************/
 
+include 'AutoResponder.class.php';
+
 define('TOKEN', 'test');
 define('WECHAT_CGI_BIN', 'https://api.weixin.qq.com/cgi-bin/');
 define('APPID', 'wxc5a8924b13639848');
@@ -125,6 +127,7 @@ class WechatCallbackApi {
 
 		$time = time();
 
+		$autoResponder = new AutoResponder();
 		$textTemplate = "<xml>
 				<ToUserName>%s</ToUserName>
 				<FromUserName>%s</FromUserName>
@@ -134,7 +137,7 @@ class WechatCallbackApi {
 				<FuncFlag>0</FuncFlag>
 				</xml>
 				";
-		$resultStr = sprintf($textTemplate, $toUserName, $fromUserName, $time, $msgType, $contentStr);
+		$resultStr = sprintf($textTemplate, $toUserName, $fromUserName, $time, $msgType, $autoResponder->getResponse());
 		return $resultStr;
 	}
 	

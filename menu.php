@@ -5,7 +5,7 @@
  * Copyright © 2016年 Liyang. All rights reserved
  ************************************************/
 
-include('WechatCallbackApi.class.php');
+include 'WechatCallbackApi.class.php';
 
 $postEntity = '{
      "button":[
