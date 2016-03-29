@@ -33,3 +33,7 @@
 curl_setopt($cURLCreateMenu, CURLOPT_POST, true);
 curl_setopt($cURLCreateMenu, CURLOPT_POSTFIELDS, $postMenuEntity);
 ```
+## 用户管理
+
+### 获取用户基本信息
+在测试帐号环境下，获取access_token失败

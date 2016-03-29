@@ -7,11 +7,6 @@
 
 include 'AutoResponder.class.php';
 
-define('TOKEN', 'test');
-define('WECHAT_CGI_BIN', 'https://api.weixin.qq.com/cgi-bin/');
-define('APPID', 'wxc5a8924b13639848');
-define('APPSECRET', 'b8f5468fa01c680feb030a13bc46efa1');
-
 class WechatCallbackApi {
 
 	function __construct() {

@@ -4,7 +4,8 @@
  * Created by Liyang on 2016-03-28
  * Copyright © 2016年 Liyang. All rights reserved
  ************************************************/
-include 'WechatCallbackApi.class.php';
+include 'constants.config.php';
+include 'class/WechatCallbackApi.class.php';
 
 $wechatCallbackApiObj = new WechatCallbackApi();
 

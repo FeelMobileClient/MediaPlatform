@@ -5,7 +5,8 @@
  * Copyright © 2016年 Liyang. All rights reserved
  ************************************************/
 
-include 'WechatCallbackApi.class.php';
+include '../constants.config.php';
+include '../class/WechatCallbackApi.class.php';
 
 define('USER_OPENID', 'oAPgewVo18O5I-uKBg8hsJvxVmkU');
 define('TEMPLATE_ID', 'fxMcfzU6bDMvieuSJZ50Jfd6CQ11AQPM459W4Ur5Wfg');
