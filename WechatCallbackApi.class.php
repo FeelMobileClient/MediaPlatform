@@ -105,6 +105,21 @@ class WechatCallbackApi {
 			}
 		}
 	}
+	
+	public function templateSend($postTemplateEntity) {
+
+		$accessToken = $this->getToken();
+		$urlTemplateSend = WECHAT_CGI_BIN.'message/template/send?access_token='.$accessToken;
+
+		$cURLTemplateSend = curl_init($urlTemplateSend);
+
+		curl_setopt($cURLTemplateSend, CURLOPT_POST, true);
+		curl_setopt($cURLTemplateSend, CURLOPT_POSTFIELDS, $postTemplateEntity);
+
+		curl_exec($cURLTemplateSend);
+
+		curl_close($cURLTemplateSend);
+	}
 
 	public function createMenu($postMenuEntity) {
 		$accessToken = $this->getToken();
@@ -118,9 +133,6 @@ class WechatCallbackApi {
 		curl_exec($cURLCreateMenu);
 
 		curl_close($cURLCreateMenu);
-
-		//echo "<br>".$accessToken;
-		//echo "<br>".$postMenuEntity;
 	}
 
 	public function makeMsg($fromUserName, $toUserName, $msgType, $contentStr) {
