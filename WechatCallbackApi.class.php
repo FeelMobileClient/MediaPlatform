@@ -65,6 +65,7 @@ class WechatCallbackApi {
 			
 			echo "POST entity is empty!";
 			exit;
+
 		} else {
 			/** libxml_disable_entity_loader
 			 * is to prevent XML external Entity Injection,
@@ -101,6 +102,23 @@ class WechatCallbackApi {
 					echo "Input something...";
 			}
 		}
+	}
+
+	public function createMenu($postMenuEntity) {
+		$accessToken = $this->getToken();
+		$urlCreateMenu = WECHAT_CGI_BIN.'menu/create?access_token='.$accessToken;
+
+		$cURLCreateMenu = curl_init($urlCreateMenu);
+
+		curl_setopt($cURLCreateMenu, CURLOPT_POST, true);
+		curl_setopt($cURLCreateMenu, CURLOPT_POSTFIELDS, $postMenuEntity);
+
+		curl_exec($cURLCreateMenu);
+
+		curl_close($cURLCreateMenu);
+
+		//echo "<br>".$accessToken;
+		//echo "<br>".$postMenuEntity;
 	}
 
 	public function makeMsg($fromUserName, $toUserName, $msgType, $contentStr) {

@@ -14,3 +14,11 @@
 > 注意：
 > 1. 接收消息时的 `FromUserName` 作为发送消息时的 `ToUserName`
 > 2. 添加 `![CDATA[]]` 在发送消息体中，用户接收不到信息，所以暂时没有加上
+
+## 自定义菜单
+
+### 创建
+```
+curl_setopt($cURLCreateMenu, CURLOPT_POST, true);
+curl_setopt($cURLCreateMenu, CURLOPT_POSTFIELDS, $postMenuEntity);
+```
