@@ -6,6 +6,7 @@
  ************************************************/
 
 include 'AutoResponder.class.php';
+include 'IChing.class.php';
 
 class WechatCallbackApi {
 
@@ -79,7 +80,7 @@ class WechatCallbackApi {
 			switch($msgType) {
 				case 'text':
 					$content = trim($postObj->Content);
-					echo $this->makeMsg($toUserName, $fromUserName, 'text', $fromUserName.'对'.$toUserName.'说'.$content);
+					echo $this->makeMsg($toUserName, $fromUserName, 'text', $content);
 					break;
 				case 'image':
 					break;
@@ -133,7 +134,21 @@ class WechatCallbackApi {
 	public function makeMsg($fromUserName, $toUserName, $msgType, $contentStr) {
 
 		$time = time();
+		$randNo = rand(0, 1);
 
+		$message = null;
+		switch($randNo) {
+			case 0:
+				$autoResponder = new AutoResponder();
+				$message = $autoResponder->getResponse();
+				break;
+			case 1:
+				$iChing = new IChing();
+				$message = $iChing->getHexagram();
+				break;
+			default:
+				
+		}
 		$autoResponder = new AutoResponder();
 		$textTemplate = "<xml>
 				<ToUserName>%s</ToUserName>
@@ -144,7 +159,7 @@ class WechatCallbackApi {
 				<FuncFlag>0</FuncFlag>
 				</xml>
 				";
-		$resultStr = sprintf($textTemplate, $toUserName, $fromUserName, $time, $msgType, $autoResponder->getResponse());
+		$resultStr = sprintf($textTemplate, $toUserName, $fromUserName, $time, $msgType, $message);
 		return $resultStr;
 	}
 	
