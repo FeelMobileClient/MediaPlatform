@@ -14,5 +14,17 @@ $wechatAuthorizeObj = new WechatAuthorize();
 $code = $_GET['code'];
 $state = $_GET['state'];
 
-echo $wechatAuthorizeObj->getAccessToken($code);
+// echo 'CODE  : '.$code.'<br>';
+// echo 'STATE : '.$state.'<br>';
+
+$jsonOb = $wechatAuthorizeObj->getJsonObwithToken($code);
+
+$userInfo = $wechatAuthorizeObj->getUserInfo($jsonOb->access_token, $jsonOb->openid);
+
+// echo $userInfo->errcode.'<br>';
+// echo $userInfo->errmsg.'<br>';
+echo $userInfo->openid.'<br>';
+echo $userInfo->nickname.'<br>';
+echo $userInfo->sex.'<br>';
+
 ?>

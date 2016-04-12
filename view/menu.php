@@ -21,7 +21,7 @@ $postEntity = '{
 	{
 		"type":"view",
 		"name":"我的信息",
-		"url":"'.$wechatAuthorizeObj->getCodeUrl('http://www.libenkuo.com/WeixinMpPHP/view/user_info.php','snsapi_base').'"
+		"url":"'.$wechatAuthorizeObj->getCodeUrl('http://www.libenkuo.com/WeixinMpPHP/view/user_info.php','snsapi_userinfo').'"
 	}]
  }';
 

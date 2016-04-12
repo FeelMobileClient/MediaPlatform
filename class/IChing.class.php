@@ -65,7 +65,7 @@ class IChing {
 		$this->hexagramArr['011011'] = '震';
 		$this->hexagramArr['110110'] = '艮';
 		$this->hexagramArr['110100'] = '渐';
-		$this->hexagramArr['001011'] = '归';
+		$this->hexagramArr['001011'] = '归妹';
 		$this->hexagramArr['010011'] = '丰';
 		$this->hexagramArr['110010'] = '旅';
 		$this->hexagramArr['100100'] = '巽';
