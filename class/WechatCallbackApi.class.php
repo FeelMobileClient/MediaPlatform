@@ -80,7 +80,7 @@ class WechatCallbackApi {
 			switch($msgType) {
 				case 'text':
 					$content = trim($postObj->Content);
-					echo $this->makeMsg($toUserName, $fromUserName, 'text', $content);
+					$this->textHandle($toUserName, $fromUserName, $content);
 					break;
 				case 'image':
 					break;
@@ -95,6 +95,7 @@ class WechatCallbackApi {
 				case 'link':
 					break;
 				case 'event':
+					$this->eventHandle($toUserName, $fromUserName, $postObj->Event);
 					break;
 				default:
 					echo "Input something...";
@@ -131,9 +132,23 @@ class WechatCallbackApi {
 		curl_close($cURLCreateMenu);
 	}
 
-	public function makeMsg($fromUserName, $toUserName, $msgType, $contentStr) {
-
+	public function makeMsg($fromUserName, $toUserName, $msgType, $message) {
 		$time = time();
+		$textTemplate = "<xml>
+				<ToUserName>%s</ToUserName>
+				<FromUserName>%s</FromUserName>
+				<CreateTime>%s</CreateTime>
+				<MsgType>%s</MsgType>
+				<Content>%s</Content>
+				<FuncFlag>0</FuncFlag>
+				</xml>
+				";
+		$resultStr = sprintf($textTemplate, $toUserName, $fromUserName, $time, $msgType, $message);
+		return $resultStr;
+	}
+
+	public function textHandle($toUserName, $fromUserName, $content) {
+		
 		$randNo = rand(0, 1);
 
 		$message = null;
@@ -149,18 +164,28 @@ class WechatCallbackApi {
 			default:
 				
 		}
-		$autoResponder = new AutoResponder();
-		$textTemplate = "<xml>
-				<ToUserName>%s</ToUserName>
-				<FromUserName>%s</FromUserName>
-				<CreateTime>%s</CreateTime>
-				<MsgType>%s</MsgType>
-				<Content>%s</Content>
-				<FuncFlag>0</FuncFlag>
-				</xml>
-				";
-		$resultStr = sprintf($textTemplate, $toUserName, $fromUserName, $time, $msgType, $message);
-		return $resultStr;
+
+		echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
+	}
+
+	public function eventHandle($toUserName, $fromUserName, $event) {
+
+		$message = null;		
+
+		switch($event) {
+			case 'subscribe':
+				$message = '相遇即是有缘，在众多公众号里，你选中了我，我吸引了你。';
+				echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
+				break;
+			case 'unsubscribe':
+				$message = '可不可以，你也会想起我！';
+				echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
+				break;
+			default:
+				$message = '呃， 我不知道你对我做了什么！';
+				echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
+
+		}		
 	}
 	
 }
