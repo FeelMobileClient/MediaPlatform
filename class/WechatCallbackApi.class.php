@@ -96,7 +96,7 @@ class WechatCallbackApi {
 				case 'link':
 					break;
 				case 'event':
-					$this->eventHandle($toUserName, $fromUserName, $postObj->Event);
+					$this->eventHandle($toUserName, $fromUserName, $postObj);
 					break;
 				default:
 					echo "Input something...";
@@ -169,11 +169,11 @@ class WechatCallbackApi {
 		echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
 	}
 
-	public function eventHandle($toUserName, $fromUserName, $event) {
+	public function eventHandle($toUserName, $fromUserName, $postObj) {
 
 		$message = null;		
 
-		switch($event) {
+		switch($postObj->Event) {
 			case 'subscribe':
 				$message = '虽是初见，却像极了好久不见的老朋友！感谢你的关注！';
 				echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
@@ -181,6 +181,9 @@ class WechatCallbackApi {
 			case 'unsubscribe':
 				$message = '可不可以，你也会想起我！';
 				echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
+				break;
+			case 'SCAN':
+				echo $this->makeMsg($toUserName, $fromUserName, 'text', $postObj->EventKey);
 				break;
 			default:
 				$message = '呃， 我不知道你对我做了什么！';
@@ -216,7 +219,7 @@ class WechatCallbackApi {
 
 	// 通过ticket换取二维码
 	public function qrcodeShow($ticket) {
-		header("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=".$ticket);
+
 	}
 }
 ?>
