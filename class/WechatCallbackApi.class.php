@@ -57,6 +57,13 @@ class WechatCallbackApi {
 		return $resultObj->access_token;
 	}
 
+	// 用户同意授权，获取 CODE
+	public function getCodeUrl($redirectUrl, $scope) {
+
+		$codeUrl = WECHAT_OPEN.'connect/oauth2/authorize?appid='.APPID.'&redirect_uri='.urlencode($redirectUrl).'&response_type=code&scope='.$scope.'&state=LIBENKUO#wechat_redirect';
+		return $codeUrl;
+	}
+
 	public function responseMsg() {
 		$postStr = $GLOBALS["HTTP_RAW_POST_DATA"];
 
@@ -183,6 +190,9 @@ class WechatCallbackApi {
 				echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
 				break;
 			case 'SCAN':
+				echo $this->makeMsg($toUserName, $fromUserName, 'text', $postObj->EventKey);
+				break;
+			case 'CLICK':
 				echo $this->makeMsg($toUserName, $fromUserName, 'text', $postObj->EventKey);
 				break;
 			default:
