@@ -26,5 +26,23 @@ class HttpTools {
 
 		return $res;
 	}
+
+	public function post($url, $postData) {
+		$curl = curl_init();
+
+		curl_setopt($curl, CURLOPT_URL, $url);
+		curl_setopt($curl, CURLOPT_POST, true);
+		curl_setopt($curl, CURLOPT_POSTFIELDS, $postData);
+		curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($curl, CURLOPT_TIMEOUT, 500);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYPEER, true);
+		curl_setopt($curl, CURLOPT_SSL_VERIFYHOST, 2);
+
+		$res = curl_exec($curl);
+		curl_close($curl);
+
+		return $res;
+
+	}
 }
 ?>

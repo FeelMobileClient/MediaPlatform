@@ -42,3 +42,11 @@ curl_setopt($cURLCreateMenu, CURLOPT_POSTFIELDS, $postMenuEntity);
 > 1. 用户同意授权获取`CODE`时，URL 为 `https://open.weixin.qq.com`；获取`access_token`时，URL为`https://api.weixin.qq.com`
 >
 > 2. 拉取用户信息时，需要`scope`为`snsapi_userinfo`，注意菜单的更新。
+
+## 帐号管理
+
+### 生成带参数的二维码
+
+1. 临时二维码
+
+2. 永久二维码

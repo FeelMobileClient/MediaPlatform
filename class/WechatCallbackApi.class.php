@@ -7,6 +7,7 @@
 
 include 'AutoResponder.class.php';
 include 'IChing.class.php';
+include 'HttpTools.class.php';
 
 class WechatCallbackApi {
 
@@ -174,7 +175,7 @@ class WechatCallbackApi {
 
 		switch($event) {
 			case 'subscribe':
-				$message = '相遇即是有缘，在众多公众号里，你选中了我，我吸引了你。';
+				$message = '虽是初见，却像极了好久不见的老朋友！感谢你的关注！';
 				echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
 				break;
 			case 'unsubscribe':
@@ -187,6 +188,35 @@ class WechatCallbackApi {
 
 		}		
 	}
-	
+
+	// 生成带参数的二维码
+	public function qrcodeCreate($codeType, $sceneId, $sceneStr) {
+
+		$createUrl = WECHAT_CGI_BIN.'qrcode/create?access_token='.$this->getToken();
+		$httpTool = new HttpTools();
+
+		switch($codeType) {
+			case 'TEMP':
+				$postData = '{
+						"expire_seconds":604800,
+						"action_name":"QR_SCENE",
+						"action_info":{
+							"scene":{
+								"scene_id":"123"
+							}
+						}
+					}';
+				 return $httpTool->post($createUrl, $postData);
+				break;
+			case 'QR_LIMIT':
+				break;
+			default:
+		}
+	}
+
+	// 通过ticket换取二维码
+	public function qrcodeShow($ticket) {
+		header("https://mp.weixin.qq.com/cgi-bin/showqrcode?ticket=".$ticket);
+	}
 }
 ?>
