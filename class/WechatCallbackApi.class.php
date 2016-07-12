@@ -157,23 +157,22 @@ class WechatCallbackApi {
 
 	public function textHandle($toUserName, $fromUserName, $content) {
 		
-		$randNo = rand(0, 1);
-
 		$message = null;
-		switch($randNo) {
-			case 0:
+		switch($content) {
+			case '来碗鸡汤':
 				$autoResponder = new AutoResponder();
 				$message = $autoResponder->getResponse();
 				break;
-			case 1:
+			case '问卦':
 				$iChing = new IChing();
 				$message = $iChing->getHexagram();
 				break;
 			default:
 				
 		}
-
-		echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
+		if($message != null) {
+			echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
+		}
 	}
 
 	public function eventHandle($toUserName, $fromUserName, $postObj) {
@@ -182,7 +181,7 @@ class WechatCallbackApi {
 
 		switch($postObj->Event) {
 			case 'subscribe':
-				$message = '虽是初见，却像极了好久不见的老朋友！感谢你的关注！';
+				$message = '嗨！是你呀！';
 				echo $this->makeMsg($toUserName, $fromUserName, 'text', $message);
 				break;
 			case 'unsubscribe':

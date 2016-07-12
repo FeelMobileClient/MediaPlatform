@@ -32,6 +32,25 @@ class AutoResponder {
 		array_push($this->phraseArr, "也许是天生懦弱的关系,我对所有的喜悦都掺杂着不祥的预感。--三岛由纪夫");
 		array_push($this->phraseArr, "发挥才智，则锋芒毕露；凭借感情，则流于世俗；坚持己见，则孤独无友；总之，人世难居。--《草枕》夏目漱石");
 
+		// 反鸡汤
+		array_push($this->phraseArr, "这个世界没有错，谁让你长的不好看又没钱。--网络");
+		array_push($this->phraseArr, "有一种病叫看过听过励志演讲励志电影励志籍励志歌曲仿佛就已经奋斗努力过了。--网络");
+		array_push($this->phraseArr, "又一天过去了，过得怎么样？梦想是不是更远了？--网络");
+		array_push($this->phraseArr, "你以为只要长得帅就有女生喜欢？你以为只要有钱就能过的开心？你以为只有学霸才能找到好工作？我告诉你，这些都是真的！--网络");
+		array_push($this->phraseArr, "你以为只要长得帅就有女生喜欢？你以为只要有钱就能过的开心？你以为只有学霸才能找到好工作？我告诉你，这些都是真的！--网络");
+		array_push($this->phraseArr, "你只有努力过了才知道，智商上的巨大差距是不可逾越的。--网络");
+		array_push($this->phraseArr, "人生就是这样，有欢笑也有泪水。一部分人主要负责欢笑，另外一部分人主要负责泪水。--网络");
+		array_push($this->phraseArr, "你只需要看别人精彩，老天对你另有安排。--网络");
+		array_push($this->phraseArr, "大部分人的成功靠的不是厚积薄发的努力，也不是戏剧化的机遇，而是早就定好的天赋与出身。
+--网络");
+		array_push($this->phraseArr, "懒是一个很好的托辞，说的好像只要勤快了就能干成什么大事一样。--网络");
+		array_push($this->phraseArr, "生活会让你苦上一阵子，等你适应了，再让你苦上一辈子。--网络");
+		array_push($this->phraseArr, "很多人每天都精神抖擞地去奋斗，仿佛全世界都在等着看他成功似的。--网络");
+		array_push($this->phraseArr, "假如生活欺骗了你，不要悲伤，不要难过，他明天还会继续欺骗你。--网络");
+		array_push($this->phraseArr, "所有抱怨社会不公和制度的人翻译过来只有一句话：给我金钱、女人和社会地位。
+--网络");
+		array_push($this->phraseArr, "你我都渴望成功，哪怕要付出很多，但我们连早点起床都做不到。--网络");
+
 		$this->phraseCount = count($this->phraseArr);
 	}
 
