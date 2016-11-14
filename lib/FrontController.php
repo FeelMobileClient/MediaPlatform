@@ -50,13 +50,13 @@ class FrontController implements FrontControllerInterface
             $this->setAction($action);
         }
         if (isset($params)) {
-            $this->setParams($params);
+            $this->setParams(explode("_", $params));
         }
     }
     
     public function setController($controller)
     {
-        $controller = 'Library\\' . ucfirst(strtolower($controller)) . "Controller";
+        $controller = 'MediaPlatform\\Controller\\' . ucfirst(strtolower($controller)) . "Controller";
         
         if (!class_exists($controller)) {
             throw new \InvalidArgumentException(

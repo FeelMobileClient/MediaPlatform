@@ -1,7 +1,7 @@
 <?php
 
 //set_error_handler("errorHandler");
-set_exception_handler("exceptionHandler");
+//set_exception_handler("exceptionHandler");
 
 require_once __DIR__ . "/lib/Autoloader.php";
 
@@ -9,6 +9,7 @@ $autoloader = new Autoloader;
 $autoloader->register();
 
 $autoloader->addNamespace('Library', __DIR__ . '/lib/');
+$autoloader->addNamespace('MediaPlatform\\Controller', __DIR__ . '/controller/');
 
 $frontController = new Library\FrontController();
 $frontController->run();

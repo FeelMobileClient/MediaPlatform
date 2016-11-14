@@ -1,5 +1,5 @@
 <?php
-namespace Library;
+namespace MediaPlatform\Controller;
 
 class HelloController
 {
