@@ -50,6 +50,7 @@ class AutoResponder {
 		array_push($this->phraseArr, "所有抱怨社会不公和制度的人翻译过来只有一句话：给我金钱、女人和社会地位。
 --网络");
 		array_push($this->phraseArr, "你我都渴望成功，哪怕要付出很多，但我们连早点起床都做不到。--网络");
+		array_push($this->phraseArr, "人是如此的容易放弃；有时整个世界好像都在反对你做的事情。那么，忘掉世界上还有其他的人吧。世上没有天才，总有一天你也能像你心中的”天才们“一样成为天才。--网络");
 
 		$this->phraseCount = count($this->phraseArr);
 	}

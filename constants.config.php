@@ -13,5 +13,3 @@ define('WECHAT_API', 'https://api.weixin.qq.com/');
 
 define('APPID', 'wxc5a8924b13639848');
 define('APPSECRET', 'b8f5468fa01c680feb030a13bc46efa1');
-
-?>
